@@ -1,0 +1,75 @@
+
+Econometrics Week 6
+
+TIME SERIES
+===============================================================================
+6.1: MOTIVATION
+- variable observed at regular frequency
+- past values often have predictive value for future
+
+two regression for n=100 observations on the variables X and Y give different results. with one regression including X at 1 lag.
+the t-value of x is 1.61 and for x(-1) (lag) is -0.99
+THE JOINT EFFECT OF X AND X(-1) ON Y IS NOT SIGNIFICANT BECAUSE THE F-VALUE OF 1.8 IS SMALLER THAN 3.1
+
+F test from lecture 2 and using the R^2 values.
+The scatter plot of X and Y was very suggestive but there was no real correlation.
+
+dlog(x) = log(x) - log(x[-1]) ~ (x - x[-1])/x[-1]
+
+see differences of univariate and bivariate time series
+
+===============================================================================
+6.2: REPRESENTATION
+
+y_t is stationary if:
+- mean E(y_t) = mu is fixed (same for all t)
+- autocovariance E((y_t-mu)(y_{t-k} - mu)) = gamma_k (for all t)
+
+if gamma_k = 0 for k = 1,2...  then it is WHITE NOISE.
+
+slides have autoregressive info!
+k order autoregression means that y_t is correlated with y_k for k = t-1, t-2, ....
+
+Let y_t = a + B*y_{t-1} + err_t where err_t is uncorrelated with y_{t-k} for all k.
+if B = 1 the y_t cannot be stationary and:
+If a != 0 and B = 1 then y_t cannot have a fixed mean.
+If a = 0 and B = 1 then y_t cannot have a fixed variance.
+
+Moving Average includes "past shocks".
+see "TEST" portions in slides.
+
+ACF and PACF -> slides show how they work and the 5% critical value
+
+TREND MODELS.
+- random walks, stochastic trend, stochastic explosive trend, deterministic, etc...
+
+cointegration -  when 2 time series share the same stochastic trends
+
+===============================================================================
+6.3: SPECIFICATION AND ESTIMATION
+
+- auto regressive distributed lag model (ADL[p,r])
+- Granger Causality : make ADL models for each variables
+
+- consequences of non-stationarity
+- Augmented Dickey-Fuller Test info
+
+===============================================================================
+6.4: EVALUATION AND ILLUSTRATION
+
+- examine if time series is stationary and if it is not then transform
+  - use augmented Dickey Fuller
+
+- if analyzing x and y jointly, and are both non-stationary, check for cointegration
+  - use Engle-Grnager method
+  - estimate ECM
+
+see other diagnostic tests
+Breusch Godfrey Test -  for serial correlation
+
+in the second test question it shows that the 2 LEVEL series are not stationary and the 2 DIFFERENCED series are... duh
+
+===============================================================================
+6.5: APPLICATION
+
+- industrial production and composite leading index

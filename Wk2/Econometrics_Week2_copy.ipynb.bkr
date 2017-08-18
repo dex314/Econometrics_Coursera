@@ -1,0 +1,968 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "smartHTMLMode"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "markdown6e9pD1",
+            "type": "markdown",
+            "body": [
+                "### Econometrics - Week 2",
+                "",
+                "#### William Schill",
+                "",
+                "This file was originally created using Jupyter with Python and HTML and has been saved as a pdf rather than exported to a pdf due to errors in exporting and latex, because of this formatting is a little wonky."
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeBCdZxq",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "import numpy as np",
+                    "import pandas as pd",
+                    "from matplotlib.pyplot import *",
+                    "import statsmodels.api as sma",
+                    "import statsmodels.stats as sms",
+                    "import seaborn as sns",
+                    "%matplotlib inline"
+                ]
+            },
+            "output": {
+                "selectedType": "Hidden",
+                "state": {},
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 6492
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "codermPJoq",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "path = 'C:\\\\Users\\\\SchillW\\\\Documents\\\\Econ_Coursera\\\\Wk2\\\\'",
+                    "df = pd.read_excel(path+'TestExer2-GPA-round2.xls')"
+                ]
+            },
+            "output": {
+                "selectedType": "Hidden",
+                "state": {},
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 200
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "codeACt1qz",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "df.head()"
+                ]
+            },
+            "output": {
+                "state": {
+                    "datatablestate": {
+                        "pagination": {
+                            "use": true,
+                            "rowsToDisplay": 25,
+                            "fixLeft": 0,
+                            "fixRight": 0
+                        },
+                        "columnNames": [
+                            "Observation",
+                            "FGPA",
+                            "SATM",
+                            "SATV",
+                            "FEM"
+                        ],
+                        "actualtype": [
+                            "4.4",
+                            "4.4",
+                            "4.4",
+                            "4.4",
+                            "4.4"
+                        ],
+                        "actualalign": [
+                            "R",
+                            "R",
+                            "R",
+                            "R",
+                            "R"
+                        ],
+                        "colorder": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
+                        "getCellSho": [
+                            true,
+                            true,
+                            true,
+                            true,
+                            true
+                        ],
+                        "barsOnColumn": {},
+                        "cellHighlightersData": [],
+                        "tableFilter": "",
+                        "showFilter": false,
+                        "columnSearchActive": false,
+                        "columnFilter": [],
+                        "columnWidth": [],
+                        "formatForTimes": {},
+                        "stringFormatForType": {},
+                        "stringFormatForColumn": {},
+                        "tooltips": []
+                    }
+                },
+                "result": {
+                    "columnNames": [
+                        "Index",
+                        "Observation",
+                        "FGPA",
+                        "SATM",
+                        "SATV",
+                        "FEM"
+                    ],
+                    "subtype": "TableDisplay",
+                    "values": [
+                        [
+                            0,
+                            1,
+                            2.518,
+                            4,
+                            4,
+                            1
+                        ],
+                        [
+                            1,
+                            2,
+                            2.326,
+                            4.9,
+                            3.1,
+                            0
+                        ],
+                        [
+                            2,
+                            3,
+                            3.003,
+                            4.4,
+                            4,
+                            1
+                        ],
+                        [
+                            3,
+                            4,
+                            2.111,
+                            4.9,
+                            3.9,
+                            0
+                        ],
+                        [
+                            4,
+                            5,
+                            2.145,
+                            4.3,
+                            4.7,
+                            0
+                        ]
+                    ],
+                    "hasIndex": "true",
+                    "type": "TableDisplay",
+                    "types": [
+                        "integer",
+                        "double",
+                        "double",
+                        "double",
+                        "double",
+                        "double"
+                    ]
+                },
+                "selectedType": "Table",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 348,
+                "height": 210
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "code2G7v7g",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "xa = df['SATV']",
+                    "ya = df['FGPA']",
+                    "moda = sma.OLS(ya,sma.add_constant(xa))",
+                    "fita = moda.fit()",
+                    "print fita.summary2()"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "                 Results: Ordinary least squares\n=================================================================\nModel:              OLS              Adj. R-squared:     0.007   \nDependent Variable: FGPA             AIC:                780.8876\nDate:               2017-02-06 10:37 BIC:                789.7112\nNo. Observations:   609              Log-Likelihood:     -388.44 \nDf Model:           1                F-statistic:        5.201   \nDf Residuals:       607              Prob (F-statistic): 0.0229  \nR-squared:          0.008            Scale:              0.21037 \n--------------------------------------------------------------------\n         Coef.     Std.Err.       t       P>|t|     [0.025    0.975]\n--------------------------------------------------------------------\nconst    2.4417      0.1551    15.7468    0.0000    2.1372    2.7463\nSATV     0.0631      0.0277     2.2805    0.0229    0.0088    0.1174\n-----------------------------------------------------------------\nOmnibus:               11.335       Durbin-Watson:          1.949\nProb(Omnibus):         0.003        Jarque-Bera (JB):       7.694\nSkew:                  0.138        Prob(JB):               0.021\nKurtosis:              2.524        Condition No.:          48   \n=================================================================\n\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 364,
+                "height": 375
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "markdownm2VNJX",
+            "type": "markdown",
+            "body": [
+                "__(a)(i)__ ",
+                "",
+                "__The coefficient for SATV is 0.0631 amd the p-value is 0.023. Assuming H0 is that SATV has a significant effect on FGPA, we cannot reject the Null to the 95% confidence interval.__"
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeIEi47w",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "b = fita.params",
+                    "FGPA1 = np.dot(sma.add_constant(xa),b.T)",
+                    "FGPA2 = np.dot(sma.add_constant((xa+1)),b.T)",
+                    "",
+                    "ciFGPA1 = sms.weightstats.zconfint(FGPA1, alpha=0.05)",
+                    "ciFGPA2 = sms.weightstats.zconfint(FGPA2, alpha=0.05)",
+                    "",
+                    "print \"Confidence Interval for FGPA is :\", ciFGPA1",
+                    "print \"Confidence Interval for FGPA with SATV+1 is :\", ciFGPA2"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Confidence Interval for FGPA is : (2.7894274148855658, 2.7961653601554843)\nConfidence Interval for FGPA with SATV+1 is : (2.8525132602634113, 2.8592512055333299)\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 356,
+                "height": 71
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "code1C6fNS",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "# print \"Mean , Stand Dev of FGPA1 = \", np.mean(FGPA1), \" , \", np.std(FGPA1)",
+                    "# print \"Mean , Stand Dev of FGPA2 = \", np.mean(FGPA2), \" , \", np.std(FGPA2)",
+                    "print \"\\n==================================\\n\"",
+                    "print \"Increase of 1 Point in SATV has \", (np.mean(FGPA2)/np.mean(FGPA1)-1.0)*100.0, '% effect on mean FGPA'"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "\n==================================\n\nIncrease of 1 Point in SATV has  2.25887736248 % effect on mean FGPA\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 370,
+                "height": 103
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "markdownDK5gjG",
+            "type": "markdown",
+            "body": [
+                "__(a)(ii)__",
+                "",
+                "__The confidence interval for the 1 point increase can be seen above. A 1 point change to SATV is approximately a 2.26% incraese in FGPA. The confidence intervals in the summary are based on the p-value and the ones listed above are based on the z-score:__",
+                "",
+                "__Pvalue confidence interval: 0.009 < t < 0.117__",
+                "__Confidence Interval for FGPA is : (2.7894274148855658, 2.7961653601554843)__",
+                "__Confidence Interval for FGPA with SATV+1 is : (2.8525132602634113, 2.8592512055333299)__"
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "code22xHdh",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "xb = df.drop(['FGPA','Observation'],axis=1)",
+                    "yb = ya",
+                    "modb = sma.OLS(yb,sma.add_constant(xb))",
+                    "fitb = modb.fit()",
+                    "print fitb.summary2()"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "                 Results: Ordinary least squares\n=================================================================\nModel:              OLS              Adj. R-squared:     0.078   \nDependent Variable: FGPA             AIC:                737.3379\nDate:               2017-02-06 10:37 BIC:                754.9852\nNo. Observations:   609              Log-Likelihood:     -364.67 \nDf Model:           3                F-statistic:        18.24   \nDf Residuals:       605              Prob (F-statistic): 2.41e-11\nR-squared:          0.083            Scale:              0.19521 \n--------------------------------------------------------------------\n         Coef.     Std.Err.      t       P>|t|      [0.025    0.975]\n--------------------------------------------------------------------\nconst    1.5570      0.2161    7.2054    0.0000     1.1327    1.9814\nSATM     0.1727      0.0319    5.4104    0.0000     0.1100    0.2354\nSATV     0.0142      0.0279    0.5071    0.6123    -0.0407    0.0690\nFEM      0.2003      0.0374    5.3576    0.0000     0.1269    0.2737\n-----------------------------------------------------------------\nOmnibus:              7.757        Durbin-Watson:           1.912\nProb(Omnibus):        0.021        Jarque-Bera (JB):        5.727\nSkew:                 0.118        Prob(JB):                0.057\nKurtosis:             2.588        Condition No.:           103  \n=================================================================\n\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 357,
+                "height": 407
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "markdownWAQ94D",
+            "type": "markdown",
+            "body": [
+                "__(b)(i)__ ",
+                "",
+                "__The coefficients are listed above and assuming the H0 is that the variables have a significant impact of FGPA, we can reject the Null for SATV when SATM and FEM are included.__"
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "code4eb61j",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "b2 = fitb.params",
+                    "FGPA3 = np.dot(sma.add_constant(xb),b2.T) #prediction",
+                    "",
+                    "xb2 = xb.copy()",
+                    "xb2['SATV'] = xb2['SATV']+1.0",
+                    "FGPA4 = np.dot(sma.add_constant(xb2),b2.T) #prediction",
+                    "",
+                    "ciFGPA3 = sms.weightstats.zconfint(FGPA3, alpha=0.05)",
+                    "ciFGPA4 = sms.weightstats.zconfint(FGPA4, alpha=0.05)",
+                    "",
+                    "print \"Confidence Interval for FGPA is :\", ciFGPA3",
+                    "print \"Confidence Interval for FGPA with SATV+1 is :\", ciFGPA4"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Confidence Interval for FGPA is : (2.7822678481821517, 2.8033249268589073)\nConfidence Interval for FGPA with SATV+1 is : (2.7964297447224977, 2.8174868233992534)\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 373,
+                "height": 71
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "codeFPwPC8",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "print \"\\n==================================\\n\"",
+                    "print \"Increase of 1 Point in SATV has \", (np.mean(FGPA4)/np.mean(FGPA3)-1.0)*100.0, '% effect on mean FGPA'"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "\n==================================\n\nIncrease of 1 Point in SATV has  0.507086610525 % effect on mean FGPA\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 324,
+                "height": 103
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "markdownIDicFC",
+            "type": "markdown",
+            "body": [
+                "__(b)(ii)__ : ",
+                "",
+                "__The confidence intervals for all of the variables p-values can be found in the table above. The confidence interval for FGPA with a 1 point increase in SATV for the model with more variables is seen above. The effect of a 1 point increase here is 0.51% which makes sense as the variable has a far less significant impact when accompanied by the other variables.__",
+                "",
+                "__Confidence Interval for FGPA is : (2.7822678481821517, 2.8033249268589073)__",
+                "__Confidence Interval for FGPA with SATV+1 is : (2.7964297447224977, 2.8174868233992534)__"
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "codehC4DQK",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "corchk = df.drop(['Observation'], axis=1)",
+                    "corchk.corr()"
+                ]
+            },
+            "output": {
+                "state": {
+                    "datatablestate": {
+                        "pagination": {
+                            "use": true,
+                            "rowsToDisplay": 25,
+                            "fixLeft": 0,
+                            "fixRight": 0
+                        },
+                        "columnNames": [
+                            "FGPA",
+                            "SATM",
+                            "SATV",
+                            "FEM"
+                        ],
+                        "actualtype": [
+                            "4.4",
+                            "4.4",
+                            "4.4",
+                            "4.4"
+                        ],
+                        "actualalign": [
+                            "R",
+                            "R",
+                            "R",
+                            "R"
+                        ],
+                        "colorder": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "getCellSho": [
+                            true,
+                            true,
+                            true,
+                            true
+                        ],
+                        "barsOnColumn": {},
+                        "cellHighlightersData": [],
+                        "tableFilter": "",
+                        "showFilter": false,
+                        "columnSearchActive": false,
+                        "columnFilter": [],
+                        "columnWidth": [],
+                        "formatForTimes": {},
+                        "stringFormatForType": {},
+                        "stringFormatForColumn": {},
+                        "tooltips": []
+                    }
+                },
+                "result": {
+                    "columnNames": [
+                        "Index",
+                        "FGPA",
+                        "SATM",
+                        "SATV",
+                        "FEM"
+                    ],
+                    "subtype": "TableDisplay",
+                    "values": [
+                        [
+                            "FGPA",
+                            1,
+                            0.19504042351599019,
+                            0.09216712114801853,
+                            0.17649071126979973
+                        ],
+                        [
+                            "SATM",
+                            0.19504042351599019,
+                            1,
+                            0.2878010773700542,
+                            -0.16268037241393643
+                        ],
+                        [
+                            "SATV",
+                            0.09216712114801853,
+                            0.2878010773700542,
+                            1,
+                            0.03357663815888314
+                        ],
+                        [
+                            "FEM",
+                            0.17649071126979973,
+                            -0.16268037241393643,
+                            0.03357663815888314,
+                            1
+                        ]
+                    ],
+                    "hasIndex": "true",
+                    "type": "TableDisplay",
+                    "types": [
+                        "string",
+                        "double",
+                        "double",
+                        "double",
+                        "double"
+                    ]
+                },
+                "selectedType": "Table",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 341,
+                "height": 183
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "codeEXYWPr",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "sns.heatmap( corchk.corr())"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "OutputContainer",
+                    "psubtype": "OutputContainer",
+                    "items": [
+                        "<div class=\"output_subarea output_text\"><pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xa84b748&gt;</pre></div>",
+                        "<div class=\"output_subarea output_png\"><img src=\"data:image/png;base64,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&#10;\"></div>"
+                    ]
+                },
+                "selectedType": "OutputContainer",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 426,
+                "height": 362
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "markdownNHE5db",
+            "type": "markdown",
+            "body": [
+                "__(c)__:",
+                "",
+                "__SATM and SATV have a 0.288 correlation which is lowering the significance of SATV in part _b(ii)_. SATV could be dropped with out any significant effect on the model.__"
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeBJ4oKw",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "print fitb.fvalue",
+                    "print fitb.f_pvalue"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "18.2448959522\n2.41149998676e-11\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 365,
+                "height": 71
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "codeYeRVhn",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "R = np.array([[0,1,0,0],",
+                    "            [0,0,1,0],",
+                    "            [0,0,0,1]])",
+                    "print fitb.f_test(R)",
+                    "print np.shape(xb)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "<F test: F=array([[ 18.24489595]]), p=2.41149998676e-11, df_denom=605, df_num=3>\n(609, 3)\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 364,
+                "height": 71
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "markdown7pkr6W",
+            "type": "markdown",
+            "body": [
+                "_Comparing F tests for regression a and regression b:_"
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "code6LLV8y",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "g = 3.0-1.0 ##difference in number of parameters so 3 versus 1",
+                    "n = np.shape(xb)[0]",
+                    "k = np.shape(xb)[1] + 1 #adding in the constant",
+                    "F = ((fitb.rsquared - fita.rsquared) / g) / ( (1-fitb.rsquared)/(n-k) )",
+                    "Fcheck = (fitb.ess - fita.ess)/(fitb.centered_tss - fitb.ess) * (n-k)/g",
+                    "print \"\\n====================================================\\n\"",
+                    "print \"Manual calculation of F test\"",
+                    "print F",
+                    "print Fcheck",
+                    "print \"g=\",g, \"  n=\",n, \"  k=\",k",
+                    "print \"\\n====================================================\\n\"",
+                    "print \"Sqaure root of F = \", np.sqrt(F)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "\n====================================================\n\nManual calculation of F test\n24.5651939993\n24.5651939993\ng= 2.0   n= 609   k= 4\n\n====================================================\n\nSqaure root of F =  4.95632868153\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 380,
+                "height": 215
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "codedVlQIG",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "print \"\\n====================================================\\n\"",
+                    "print \"statsmodels F test calculation for comaprison\"",
+                    "F2 = fitb.compare_f_test(fita)",
+                    "print F2",
+                    "print np.sqrt(F2[0])"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "\n====================================================\n\nstatsmodels F test calculation for comaprison\n(24.565193999316588, 5.5276752534973362e-11, 2.0)\n4.95632868153\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 339,
+                "height": 135
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "markdownbHYQES",
+            "type": "markdown",
+            "body": [
+                "__d(i)__:",
+                "",
+                "__I read the question as regarding the outcome of the model and not the SATV variable itself. The calculation for the F test (using part against part b) shows that the the F value exceeds the critical value of _3.9_ and we can reject the Null hypothesis. We can confirm this using statsmodels method built into the fit as shown above.__",
+                "",
+                "",
+                "__d(ii)__:",
+                "",
+                "__Analytically, it can be shown that the F-test is approximately equal to the t-test squared. However in each calculation, this was unachievable. The statsmodels method derived a value of 8.66E-13 is close to the numerical calculation seen below that of 7.88E-13. In no way was I able to get a value of 4.956 for the t-test.__",
+                "",
+                "We know that:",
+                "",
+                "$ t = ( y_{bar1} - y_{bar0}) / ( s_p * \\sqrt (1/n_0 + 1/n_1) ) $",
+                "",
+                "where s_p = _s pooled_ = $ s_p = ( (n_0-1)*s_0^2 + (n_1-1)*s_1^2 ) / (n_0+n_1-2) $",
+                "",
+                "so $t^2 = (y_{bar1} - y_{bar0})^2 / ( s_p^2 * (1/n_0 + 1/n_1) )$",
+                "",
+                "For a single outcome, and large n, we know that $ s / \\sqrt( n - k ) \\approx s/\\sqrt(n) $",
+                "",
+                "And $ ( s/\\sqrt(n) )^2 \\approx e'e / n $",
+                "",
+                "We can substitute this into our equation for t which gives us:",
+                "",
+                "$ 1/s_p^2 * (1/n_0 + 1/n_1) \\approx e_p'*e_p * (1/n_0 + 1/n_1) $",
+                "",
+                "And using the same method in squaring the numerator of the t-statistic we have:",
+                "",
+                "$ (y_{bar1} - y_{bar0})^2 \\approx e_1'e_1 - e_0'e_0 $",
+                ""
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "code0r2Hp0",
+            "evaluator": "IPython",
+            "type": "code",
+            "input": {
+                "body": [
+                    "n0 = len(FGPA1); n1 = len(FGPA3)",
+                    "t_stat = np.sqrt( (fitb.ess - fita.ess)/(fitb.centered_tss - fitb.ess) / (1.0/n0 + 1.0/n1) )",
+                    "print t_stat"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "4.9726862464\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "IPython",
+                "shellId": "E1691CF6493F44E683299DDD42F2D797",
+                "elapsedTime": 387,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "isError": false
+        },
+        {
+            "id": "codeba56Jm",
+            "type": "code",
+            "evaluator": "IPython",
+            "input": {
+                "body": [
+                    ""
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true
+        },
+        {
+            "id": "markdownZUVqHH",
+            "type": "markdown",
+            "body": [
+                "__The above result is approximately equal to the square root of the F-test.__"
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdown8gJCal",
+            "type": "markdown",
+            "body": [
+                ""
+            ],
+            "mode": "preview",
+            "evaluatorReader": false
+        }
+    ],
+    "tagMap": {
+        "root": [
+            "markdown6e9pD1",
+            "codeBCdZxq",
+            "codermPJoq",
+            "codeACt1qz",
+            "code2G7v7g",
+            "markdownm2VNJX",
+            "codeIEi47w",
+            "code1C6fNS",
+            "markdownDK5gjG",
+            "code22xHdh",
+            "markdownWAQ94D",
+            "code4eb61j",
+            "codeFPwPC8",
+            "markdownIDicFC",
+            "codehC4DQK",
+            "codeEXYWPr",
+            "markdownNHE5db",
+            "codeBJ4oKw",
+            "codeYeRVhn",
+            "markdown7pkr6W",
+            "code6LLV8y",
+            "codedVlQIG",
+            "markdownbHYQES",
+            "code0r2Hp0",
+            "markdownZUVqHH",
+            "markdown8gJCal"
+        ]
+    },
+    "tagMap2": {
+        "initialization": [],
+        "IPython": [
+            "markdown6e9pD1",
+            "codeBCdZxq",
+            "codermPJoq",
+            "codeACt1qz",
+            "code2G7v7g",
+            "markdownm2VNJX",
+            "codeIEi47w",
+            "code1C6fNS",
+            "markdownDK5gjG",
+            "code22xHdh",
+            "markdownWAQ94D",
+            "code4eb61j",
+            "codeFPwPC8",
+            "markdownIDicFC",
+            "codehC4DQK",
+            "codeEXYWPr",
+            "markdownNHE5db",
+            "codeBJ4oKw",
+            "codeYeRVhn",
+            "markdown7pkr6W",
+            "code6LLV8y",
+            "codedVlQIG",
+            "markdownbHYQES",
+            "code0r2Hp0",
+            "markdownZUVqHH",
+            "markdown8gJCal"
+        ]
+    },
+    "namespace": {}
+}

@@ -1,0 +1,55 @@
+COURSERA - ECONOMETRICS - 10.6.16
+--------------------------------------------------------------------------------
+
+- endogeneity - deal with 'reverse causation'
+- model specification -  decide which factors to use
+
+1.1 - Simple Regression - Motivation
+- maximization of sales by changing prices
+- histograms and scatter diagrams
+- lower prices associated with higher sales
+
+predicated sales = a + b*sales
+
+define turnover as price*sales
+where sales = a+b*price    a>0 and b<0
+
+if the store manager knows a and b he can determine for whcih price the turnover is maximal:
+P = -a/2/b
+
+Turnover = P*S
+T = P*(a+b*P) = aP + bP^2
+dT/DP = a+2*b*P = 0
+P = -a/2/b
+
+Normal DIstribution
+Sales ~ N(mu,sig^2)
+Estimate of populationmean mu: sample mean y_bar = 1/n*sum(y_i)
+
+diagram B is easiest for predicting sales because it has the least variation around the imaginary line
+
+--------------------------------------------------------------------------------
+1.2 - SImple Reg - Representation
+Expected Value: E(y_i) = mean
+Variance: E(y_i-mu)^2 = sig^2
+
+sample estimates: u_hat = y_bar
+sig_hat^2 = 1/(n-1)*sum( (y_i - y_bar)^2 )
+
+- simple regression : replace mu (unconditional mean) with a+Bx (conditional mean)
+- alternative format: y_i = a + Bx + eps_i
+where eps_i ~ N(0,sig^2)
+
+predict sales for prices of 50 and 58 -> 99 and 85
+
+relative change = dx/x = new_val / prev_val
+
+marignal effect = B = dy/dx (slope)
+
+elasticity = (dy/y) / (dx/x) 'relative change in y over relative change in x'
+- elasticity in y = a+Bx:
+  dy/y / dx/x = dy/dx*x/y = B*x/y
+
+fact : elasticity in log(y) = a + B*log(x) = B
+--------------------------------------------------------------------------------
+1.3  - Simple Regression - Estimation

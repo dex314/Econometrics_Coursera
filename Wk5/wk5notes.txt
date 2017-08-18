@@ -1,0 +1,57 @@
+
+BINARY CHOICE!!
+
+===========================================================================
+5.1 Motivation
+
+ yes it is possible to estimate a binary variable using least squares
+
+===========================================================================
+5.2 Representation
+
+let yi be a binary variable with value 0 and 1 and assume yi ~ bernoulli distributed about pi
+
+logistic function
+slides have different examples of the function changing
+
+
+===========================================================================
+5.3 Estimation
+
+Pr[yi = 1] = exp(xi'B)/(1+exp(xi'B))
+maximum likelihood estimation is the parameter value gives you the highest probability
+of getting your observed data
+
+joint probabilities for models. but is usually very small which may cause numerical issues,
+this is why we end up using the Log(likelihood) function
+
+the maximum likelihood estimator (MLE) is the value of B that maximizes the log function.
+is the MLE also the value that maximizes the likelihood function? YES!
+they are both monotonically increasing functions
+
+s'pose that all observations on yi are zero. what is the MLE in this case?
+It doesnt exist!
+
+===========================================================================
+5.4 Evaluation
+
+s'pose we have a nearly perfect fit for all n observation, what is the numerical value of the log
+likelihood function?
+answer is 1. duh.
+
+uses pseudo r squared measures
+R^2 = 1 - log(L(b))/log(L(b1)) = 1-llofmodel/llofinterceptonlymodel
+theres a few version of this. this is mcFaddens above.
+
+does a higher value of the cut-off value x generate more, same or less predictions
+that are equal to 1? LESS THAN OR EQUAL TO
+
+evaluation of prediction accuracy (m11, m00, m10, m01)
+m11 = actual true, pred true
+m00 = actual false, pred false
+m10 = actual true, pred false (false negative)
+m01 = actual false, pred true (false positive)
+
+===========================================================================
+5.5 Application
+Marketing Campaign Example

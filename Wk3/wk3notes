@@ -1,0 +1,82 @@
+Econometrics - WK3
+
+3.1:
+MODEL SPECIFICATIONS
+- sp500 stock market index, modeling the series
+- can consider sotck characteristics, interest rate related, macro economic variables
+- comparison of index versus its book to market ratio
+- talks about transforming variables with log and difference
+
+- Regression of index with book to market ratio transformed. Negative sign on coefficient
+implies that the high book to market ration implies low valuation of companies (high book relative to high market)
+and in this case it is likely that the market value has decreased over a certain period.
+
+3.2:
+MORE MODEL SPECIFICATIONS
+- Bias / Efficiency Trade Off
+  y = Xb + Err
+
+- too few variables -> estimation bias
+- too many -> efficiency trade off
+
+consequences of omitting variables
+y = x1b1 + x2b2 + err
+- slides on E(b_R)
+- lets us know the model will have bias if B2 != 0, when restricting variables
+
+Efficiency:
+- Var(bR) = var(b1) - P*var(b2)*P'
+  - variance of bR is smaller than that of b1 even if B2 == 0
+
+Metrics to determine good trade off from Bias and Efficiency:
+- information criteria
+  AIC and BIC
+  BIC imposes the strongest penalty but only for large n where large is (n>=8)
+- out of sample prediction
+  RMSE - root mean squared error
+  MAE - mean absolute error
+  lower values mean better models
+- methods for selecting variables
+  t-test and F-test (dont take into consideration bias/efficiency trade off)
+
+iterative methods:
+  - general to specific and backward eliminate variables
+  - specific to general and forward variable addition (a greater t-stat eliminates the old variable)
+
+3.3:
+TRANSFORMATIONS AND INCORPORATING NON LINEARITY
+- if y is a level variable, only makes sense to relate them to level variables and in that same light,
+  growth rate to growth rates etc...
+- log transformations remove explosiveness of variables
+- differencing removes trends (dy = yi - yi-1   if subst yi=i, then dy == 1 always)
+- can consider squares, cubics, etc. or cross products of explanatory variables
+
+- can also add dummy variables (0's and 1's)
+!!!but can only add a constant term if you impose restrictions on the quarter specific mean levels
+(the alphas in the lecture notes for 3.3)!!! ie. if one of the dummies in the example = 0
+
+
+3.4:
+EVALUATION
+ex: extending linear model to non-linear
+Regression Specification Error Test (RESET) - a general misspecification test
+
+Chow Break Test - in case of possible break, split sample and test for consistency
+the y's are stacked, and the x's are stacked kroenecker style
+and Chow Forecast Test
+
+Test for Normality of Errors
+- check distribution of residuals - normality
+- Jarque Bera test evaluates skewness S and kurtosis K:
+  (see slides)
+  which has ~ chi2 distribution if H0 errors are NID is true
+
+3.5:
+APPLICATION
+- going back to stock index model from 3.1
+- log() and diff() ~ growth rate
+- only using 5 explanatory variables: the table is 5 different models with single variable n constant
+- used the general to specific approach:
+  elimating on high pvals, issued stock goes first, inflation is next but we decide to keep it based on model means,
+  third regression shows dividend price is insignficant, last model is just book to market ratio
+- evaluate the model using three different time periods over the data set

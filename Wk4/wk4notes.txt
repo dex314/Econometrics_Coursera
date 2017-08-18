@@ -1,0 +1,88 @@
+
+ECONOMETRICS WEEK 4
+
+==========================================================================
+4.1 Endogeneity
+- num of flights at airport per month (y)
+- number of traveler insurances (x)
+
+True Statement: "When 4000 insurances are made in a month, the expected number of flights in the next month equals 11,000"
+Not True: "Selling 4,000 additional insurances causes an increase of 1,000 flights in the next month."
+
+The regression does not identify a causal impact!
+
+OLS requires some assumptions:
+- explanatory variables should be exogenous
+- violation of this: endogeneity
+
+non-stochastic - with new data x stays constant and y changes (controlled experiment, which is not common in economics)
+  ie. new data with the same X cannot be obtained!
+
+if X correlated with error, X is endogenous
+
+==========================================================================
+4.2 Endogeneity Consequences
+
+- simulated IQ to salary example
+- Can we say something about the expected direction of the bias in the case of endogeniety due to mesasurement error?
+  YES. The size fot eh impact of x on y tends to be underestimated.
+
+OLS is biased towards zero and underestimates the true effect
+
+Even for very large data set we do not get close to slope parameter (slide with gaussian bumps)
+  no noise vs with noise
+
+Why dont we discuss the bias (E(b)-beta) of the OLS estimator under endogeneity?
+- The bias cannot be calculated without additional assumptions.
+
+==========================================================================
+4.3 Endogeneity - Estimation
+"solving endogeneity"
+
+the error term consists of "unexplained factors" that we dont have to incorporate into the model
+Z variables should be correlated with X but not the error
+- Z vars are instruments if the above is true, so any correlation with Z and y is due to X
+
+"Two Stage Least Squares"
+- model X = Z*gamma + nu
+- fitted value is X_hat
+- regress y on X_hat
+DO NOT USE RESIDUALS OR REPORTED STANDARD ERRORS OF SECOND STAGE REGRESSION!!!!
+
+What are good instruments? See slides
+
+Q: Which of the following variables would be suitable as an instrument for price when  modeling
+  consumer sales of ice cream using the model Sales = a + b*price + err?
+A: Price of Raw Materials - it is correlated with Price and not with Error
+    Competitor Prices may not be corr with X, and outside Temp is definitely not, probs corr with Err.
+    Both are direct influence on sales not price.
+
+==========================================================================
+4.4 Endogeneity - Testing
+
+for checking condition 2, use F-test
+
+- in the first stage regression we apply OLS to x1 = z*g1 + x2g2 + n
+2LS requires g1 != 0
+
+what happens if g1 == 0?
+- the variance of the 2SLS becomes extremely large (x1 really correlated to x2)
+
+SARGAN Test
+- the m=k situation means it cant be tested statistically
+- this might be useful for the test for week 4!!!
+HAUSMAN Test
+
+==========================================================================
+4.5 Endogeneity - Application
+- wht omitted relations would lead OLS to overestimate the impact of the prep math course?
+  Students with high motivation are likely to take the prep course.
+
+- which of the following variables qualify as an instrument for participation?
+  - intelligence by IQ
+  - number of MOOCS completed before this one
+  - age of learner
+  - NONE <- correct response
+
+finding instruments necessitates being creative.
+email instrument example

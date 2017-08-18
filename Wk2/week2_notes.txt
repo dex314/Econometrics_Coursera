@@ -1,0 +1,120 @@
+COURSERA ECONOMETRICS - 10.12.16
+WEEK 2
+================================================================================
+2.1 - Multiple Regression-------------------------------------------------------
+
+- wages of males and females
+Q1 - what is total gender diff in wage including effects like education level
+Q2 -  what is total gender diff in wage excluding effects
+
+- variable education should be excluded for Q1 and included for Q2 (seems reversed but its true)
+
+partial effect - if all other variables remained 'fixed'
+- what is partial gender effect on wage?
+
+2.2 - Multiple Regression: Representation---------------------------------------
+- matrices
+- epsilon is error term
+
+let y be an nx1 vector and let X be an nxk matrix with rank(X)=r.
+if r=n=k: y=Xb has a unique soln (full col rank, linearly indy)
+if r=n<k: y=Xb has multiple solns
+if r<n: y=Xb has (in general) no soln
+
+nearly always, n>k. we assume r=k < n so there is no exact soln
+
+partial effect: dy/dx_j = beta_j (b_j) if x_h remains fixed for all h!=j
+
+total effect = partial effect + indirect effect
+eg:
+direct: education increases => wage increases
+indirect: education increases => part-time increases => wage decreases
+
+if b_j = 0, it has no partial effect but it does not mean that it doesnt have an indirect effect
+
+2.3 - Multiple Regression:  Estimation------------------------------------------
+
+y = X*b + eps
+- assume X is full rank, then if rank(X[nxk]) = k, k<=n
+- wish to find a vector of residuals y-Xb = e such that e is minimized
+ (OLS)
+
+ S(b) = e'*e = (y-Xb)'*(y-Xb) = y'y-2b'X'y+b'X'Xb
+
+ to show rank(X) = k implies X'X is invertible, columns of X must be independent
+
+ ie: b = inv(X'X)*X'y
+residuals are orthogonal to predicted values... geometrically obvious
+vector of residuals 'e' satisfies k linbear equns since X'e = 0
+e has n-k degrees of freedom (unbiased estimator)
+
+R2 = cor(y,y_hat)^2
+
+2.4 - Multiple Regression : Evaluation------------------------------------------
+
+Data Generating Process Assumptions:
+1. linear model: y=xb+eps
+2. fixed regressors: x is non random
+3. radnom err terms with mean = 0
+4. homoskedastic error terms: E(eps_i^2) = sig^2 for all i=1:n
+5. uncorrelated error terms: E(ei,ej) = 0 for all i!=j
+6. parameters Beta and sig^2 are fixed and unknown
+
+trace(square matrix) = sum of diagonal elements of sq matrix
+
+efficiency of OLS
+- OLS is best possible estimate under linear ubiased estimator and following the 6 rules above
+- this is the gauss-markov theorem
+  - if b_hat = Ay is linear estimator, A nonrandom(kxn) matrix,
+    and if b_hat is unbiased: E(b_hat) = b
+    then var(b_hat) - var(b) is positive semi definite
+- as b has the smallest varianbce of all linear unbiased estimators (OLS is efficient)
+
+Test for a single restriction: t-test
+- using first 6 rules above and also
+7. eps is normally distributed
+
+T-Test
+- test for relevance of single explanatory favtor j:
+  test H0 : B_j = 0 against HA : B_j != 0
+  by rules 1-7, if H0 hols then z_j ~ N(0,1)
+
+- replace unknown sigma by s where s^2 = e'e/(n-k)
+  test statistic = b_j/(s*sqrt(a_jj))
+  then t_j ~ t(n-k) or its close to normal unless n-k is small
+
+For Multiple Linear Restrictions:
+H0 : RB = r against H1 : RB != r
+- R is gxk with rang(R) = g
+- r is gx1 vector
+- F test
+
+2.5 Multiple Regression - Application-------------------------------------------
+
+Those prices do suck, but youre in a better position than most being well
+employed and not sick. With the number of pre-existing conditioned people having surprised many insurers.
+The plans were lousy before the ACA and the premiums were increasing year over year:
+http://kff.org/report-section/2013-summary-of-findings/
+The individual mandate was championed by Republicans:
+https://en.wikipedia.org/wiki/Health_insurance_mandate
+The CBO determined the repeal of the ACA would be cost prohibitive,
+raising premiums ~20% while increasing those uninsured by ~18 million.
+https://www.cbo.gov/publication/52371
+Much like Obama's 8 year tenure, thanks to Congress, were damned if we do, damned if we dont.
+While I loved his initiatives on social justice, his improvements to some aspects of the economy
+that helped as a whole, and his environmental efforts, he failed in attempting to compromise
+with a very far conservative right, pushing globalization, burning freedom in the information age
+and not adequately reaching out to help the economy of old (coal, gas, steel, etc.)
+come into the new (tech, renewables, infrastructure). You cant leave anyone behind.
+
+
+
+
+
+
+
+
+
+
+
+.
